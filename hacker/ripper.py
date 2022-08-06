@@ -34,22 +34,24 @@ class poseDetector():
             for id, lm in enumerate(self.results.pose_world_landmarks.landmark):
                 h, w, c = img.shape
                 # print this shit
-                cx, cy, cz = int(lm.x), int(lm.y), int(lm.z)
+                cx, cy, cz = lm.x, lm.y, lm.z
                 self.lmList.append([id, cx, cy, cz])
         return self.lmList
  
  
 def main():
     cap = cv2.VideoCapture(0)
-    pTime = 0
     detector = poseDetector()
-    set = open
-    with open("dataman.csv", "a") as set:
-        while (True):
-            time.sleep(0.2)
-            success, img = cap.read()
-            img = detector.findPose(img)
-            coords = detector.findPosition(img, draw = False)
+    counter = 0
+    while (True):
+        time.sleep(0.2)
+        success, img = cap.read()
+        img = detector.findPose(img)
+        coords = detector.findPosition(img, draw = False)
+        with open(f"pose{counter}.csv", "a") as set:
+            for cord in coords:
+                set.write(f"{cord[0]},{cord[1]},{cord[2]},{cord[3]} \n")
+        counter += 1
             
             
  
