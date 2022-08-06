@@ -49,10 +49,11 @@ def main():
             success, img = cap.read()
             img = detector.findPose(img)
             coords = detector.findPosition(img, draw = False)
-            set.write(f"{coords[0][1]},{coords[0][2]},{coords[0][3]}")
-            for i in range(11, len(coords)):
-                set.write(f"{coords[i][1]},{coords[i][2]},{coords[i][3]},")
-            set.write("\n")
+            if (coords):
+                set.write(f"{coords[0][1]},{coords[0][2]},{coords[0][3]},")
+                for i in range(11, len(coords)):
+                    set.write(f"{coords[i][1]},{coords[i][2]},{coords[i][3]},")
+                set.write("\n")
             counter += 1
             
             
