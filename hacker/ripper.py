@@ -43,15 +43,17 @@ def main():
     cap = cv2.VideoCapture(0)
     detector = poseDetector()
     counter = 0
-    while (True):
-        time.sleep(0.2)
-        success, img = cap.read()
-        img = detector.findPose(img)
-        coords = detector.findPosition(img, draw = False)
-        with open(f"pose{counter}.csv", "a") as set:
-            for cord in coords:
-                set.write(f"{cord[0]},{cord[1]},{cord[2]},{cord[3]} \n")
-        counter += 1
+    with open("pose.csv", "a") as set:
+        while (True):
+            time.sleep(0.2)
+            success, img = cap.read()
+            img = detector.findPose(img)
+            coords = detector.findPosition(img, draw = False)
+            set.write(f"{coords[0][1]},{coords[0][2]},{coords[0][3]}")
+            for i in range(11, len(coords)):
+                set.write(f"{coords[i][1]},{coords[i][2]},{coords[i][3]},")
+            set.write("\n")
+            counter += 1
             
             
  
