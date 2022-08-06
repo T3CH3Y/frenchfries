@@ -38,8 +38,9 @@ class poseDetector():
                 self.lmList.append([id, cx, cy, cz])
         return self.lmList
  
- 
+X
 def main():
+    video_type = "normal" #change this anomaly
     cap = cv2.VideoCapture(0)
     detector = poseDetector()
     counter = 0
@@ -53,7 +54,7 @@ def main():
                 set.write(f"{coords[0][1]},{coords[0][2]},{coords[0][3]},")
                 for i in range(11, len(coords)):
                     set.write(f"{coords[i][1]},{coords[i][2]},{coords[i][3]},")
-                set.write("\n")
+                set.write(f"{video_type}\n") #add 
             counter += 1
             
             
