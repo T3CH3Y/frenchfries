@@ -3,7 +3,7 @@ import mediapipe as mp
 import time
 import math
  
- 
+  # I did a thing
 class poseDetector():
  
     def __init__(self, mode=False, upBody=False, smooth=True,
